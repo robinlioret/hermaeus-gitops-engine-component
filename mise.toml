@@ -1,2 +1,10 @@
 [tools]
-go = "latest"
+go = "1.26.3"
+kind = "0.31.0"
+kubectl = "1.36.1"
+jq = "1.8.1"
+helm = "4.2.0"
+
+[tasks.test-e2e]
+description = "Run E2E tests"
+run = "tests/e2e/run.sh"
