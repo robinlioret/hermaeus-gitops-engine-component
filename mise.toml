@@ -9,6 +9,10 @@ helm = "4.2.0"
 description = "Run E2E tests"
 run = "tests/e2e/run.sh"
 
-[tasks.generate-crds]
-description = "Generate CRDs"
-run = "scripts/generate_crds.sh"
+[tasks.generate-manifests]
+description = "Generate manifests (CRDs, RBAC)"
+run = "scripts/generate_manifests.sh"
+
+[tasks.generate-objects]
+description = "Generate objects (DeepCopy...)"
+run = "scripts/generate_objects.sh"

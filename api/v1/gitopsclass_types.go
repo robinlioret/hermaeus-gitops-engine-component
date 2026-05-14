@@ -41,12 +41,15 @@ type LeaderSpec struct {
 }
 
 // GitopsClassStatus defines the observed state of GitopsClass
+// +kubebuilder:object:generate=true
 type GitopsClassStatus struct {
 	// Leader current status
 	// +optional
 	Leader LeaderStatus `json:"leader,omitempty"`
 }
 
+// LeaderStatus defines the observed state of the Leader
+// +kubebuilder:object:generate=true
 type LeaderStatus struct {
 	// Name of the leader. Namespace and Pod name
 	// +optional
