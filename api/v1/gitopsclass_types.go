@@ -14,6 +14,7 @@ const (
 // GitopsClass defines the scope for a set of GEC (often one tool)
 // +kubebuilder:object:root=true
 // +kubebuilder:subresource:status
+// +kubebuilder:resource:scope=Cluster
 type GitopsClass struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`

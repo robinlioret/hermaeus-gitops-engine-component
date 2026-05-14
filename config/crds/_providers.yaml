@@ -1,0 +1,120 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.21.0
+  name: providers.
+spec:
+  group: ""
+  names:
+    kind: Provider
+    listKind: ProviderList
+    plural: providers
+    singular: provider
+  scope: Namespaced
+  versions:
+  - name: ""
+    schema:
+      openAPIV3Schema:
+        description: Provider defines the way GEC should interact with the git provider
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: ProviderSpec defines the desired state of the Provider
+            properties:
+              baseURI:
+                description: BaseURI is the base URI to join the repository. Trailing
+                  slash will be removed.
+                example: github.com/hermaeus-project
+                type: string
+              git:
+                description: GitConnection defines the protocol and authentication
+                  method to the git repository
+                properties:
+                  https:
+                    description: HTTPS enables and configures the credentials
+                    properties:
+                      basicAuth:
+                        description: BasicAuth enables and configure basic authentication
+                          to the git repository
+                        properties:
+                          keyPassword:
+                            description: KeyPassword is the key in the secret mapped
+                              to the password value
+                            type: string
+                          keyUsername:
+                            description: KeyUsername is the key in the secret mapped
+                              to the username value
+                            type: string
+                          secretName:
+                            description: SecretName is the name of the secret containing
+                              the credentials. Must be in the same namespace as the
+                              GEC instances. Can be omitted in favor of unsecure username
+                              and password during exploration phase.
+                            type: string
+                          unsecurePassword:
+                            description: UnsecurePassword provide an easy way to configure
+                              BasicAuth. For exploration purposes only!
+                            type: string
+                          unsecureUsername:
+                            description: UnsecureUsername provide an easy way to configure
+                              BasicAuth. For exploration purposes only!
+                            type: string
+                        type: object
+                      enableTLS:
+                        description: EnableTLS enforces HTTPS
+                        type: boolean
+                    type: object
+                  ssh:
+                    description: SSH enables and configures the credentials
+                    properties:
+                      keyPrivateKey:
+                        description: KeyPrivateKey is the key in the secret mapped
+                          to the private key value
+                        type: string
+                      keyUsername:
+                        description: KeyUsername is the key in the secret mapped to
+                          the username value
+                        type: string
+                      secretName:
+                        description: SecretName is the name of the secret containing
+                          the credentials. Must be in the same namespace as the GEC
+                          instances. Can be omitted in favor of unsecure username
+                          and key during exploration phase.
+                        type: string
+                      unsecurePrivateKey:
+                        description: UnsecurePrivateKey provide an easy way to configure
+                          SSH. For exploration purposes only!
+                        type: string
+                      unsecureUsername:
+                        description: UnsecureUsername provide an easy way to configure
+                          SSH. For exploration purposes only!
+                        type: string
+                    type: object
+                type: object
+              gitopsClass:
+                description: GitopsClass name managing the Provider
+                type: string
+            required:
+            - baseURI
+            type: object
+        type: object
+    served: true
+    storage: true

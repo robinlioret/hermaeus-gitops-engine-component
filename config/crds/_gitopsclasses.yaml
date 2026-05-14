@@ -12,7 +12,7 @@ spec:
     listKind: GitopsClassList
     plural: gitopsclasses
     singular: gitopsclass
-  scope: Namespaced
+  scope: Cluster
   versions:
   - name: ""
     schema:
