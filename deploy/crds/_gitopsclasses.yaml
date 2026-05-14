@@ -1,0 +1,78 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.21.0
+  name: gitopsclasses.
+spec:
+  group: ""
+  names:
+    kind: GitopsClass
+    listKind: GitopsClassList
+    plural: gitopsclasses
+    singular: gitopsclass
+  scope: Namespaced
+  versions:
+  - name: ""
+    schema:
+      openAPIV3Schema:
+        description: GitopsClass defines the scope for a set of GEC (often one tool)
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: GitopsClassSpec defines the desired state of GitopsClass
+            properties:
+              leader:
+                description: Leader election policy
+                properties:
+                  reelectionTimeout:
+                    description: Duration before triggering a new leader election.
+                    type: string
+                  reportPeriod:
+                    description: Duration between two update of the leader status
+                      fields by the leader.
+                    type: string
+                type: object
+            type: object
+          status:
+            description: GitopsClassStatus defines the observed state of GitopsClass
+            properties:
+              leader:
+                description: Leader current status
+                properties:
+                  lastReportAt:
+                    description: LastReportAt is the last time the leader reported
+                      healthy by editing the GitopsClass resource.
+                    format: date-time
+                    type: string
+                  name:
+                    description: Name of the leader. Namespace and Pod name
+                    type: string
+                  state:
+                    default: Missing
+                    description: State of the leader.
+                    type: integer
+                type: object
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

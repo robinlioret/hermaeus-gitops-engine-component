@@ -8,3 +8,7 @@ helm = "4.2.0"
 [tasks.test-e2e]
 description = "Run E2E tests"
 run = "tests/e2e/run.sh"
+
+[tasks.generate-crds]
+description = "Generate CRDs"
+run = "scripts/generate_crds.sh"
