@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -e
+
+die() {
+  echo "$1"
+  exit 1
+}
+
+REPO_NAME="$1"
+test -z "$REPO_NAME" && die "Empty repo name provided. Try something like my-project, project-house, etc"
+REPO_PATH="/scm/$REPO_NAME.git"
+test -d "$REPO_PATH" && die "Directory $REPO_PATH already exists"
+
+runuser -l git -c "mkdir -p $REPO_PATH"
+runuser -l git -c "git -C $REPO_PATH init --bare"

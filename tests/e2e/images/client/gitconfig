@@ -1,0 +1,9 @@
+[user]
+    name = HEGEC E2E
+    email = e2e@hegec.io
+
+[push]
+    autoSetupRemote = true
+
+[init]
+    defaultBranch = main

@@ -1,0 +1,22 @@
+FROM ubuntu:22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Seed gitconfig
+COPY ./gitconfig /root/.gitconfig
+
+# Install OpenSSH and Git
+RUN apt-get update \
+    && apt-get install -y openssh-client git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Seed an authorized_keys file
+COPY .temp/ssh /root/.ssh
+RUN chmod 600 /root/.ssh/* \
+    && chown root:root /root/.ssh/*
+
+# Set working directory to the empty dir
+WORKDIR /root/cache
+
+# Keep the pod idle, ready to receive commands
+CMD ["/bin/sleep", "3600"]

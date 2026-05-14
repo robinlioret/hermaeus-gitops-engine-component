@@ -1,0 +1,6 @@
+[user]
+    name = GIT SERVER
+    email = git@server.local
+
+[init]
+    defaultBranch = main
