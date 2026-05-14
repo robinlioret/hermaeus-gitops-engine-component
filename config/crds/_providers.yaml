@@ -46,7 +46,7 @@ spec:
                 type: string
               git:
                 description: GitConnection defines the protocol and authentication
-                  method to the git repository
+                  method to the git repository. If omitted, the provider must be public
                 properties:
                   https:
                     description: HTTPS enables and configures the credentials
@@ -112,6 +112,21 @@ spec:
               gitopsClass:
                 description: GitopsClass name managing the Provider
                 type: string
+              service:
+                description: Service defines what provider is used (Gitlab, GitHub,
+                  Forgejo, etc). If omitted, only bare git feature will be supported
+                  by the provider.
+                properties:
+                  forgejo:
+                    description: Forgejo defines a Forgejo remote server
+                    type: object
+                  github:
+                    description: Github defines a Github remote server
+                    type: object
+                  gitlab:
+                    description: Gitlab defines a Gitlab remote server
+                    type: object
+                type: object
             required:
             - baseURI
             type: object

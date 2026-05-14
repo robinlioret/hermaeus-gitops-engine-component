@@ -20,8 +20,13 @@ type ProviderSpec struct {
 	// GitopsClass name managing the Provider
 	GitopsClass string `json:"gitopsClass,omitempty"`
 
-	// GitConnection defines the protocol and authentication method to the git repository
+	// GitConnection defines the protocol and authentication method to the git repository. If omitted, the provider must be public
+	// +optional
 	Git GitConnection `json:"git,omitempty"`
+
+	// Service defines what provider is used (Gitlab, GitHub, Forgejo, etc). If omitted, only bare git feature will be supported by the provider.
+	// +optional
+	Service ServiceConnection `json:"service,omitempty"`
 }
 
 // GitConnection defines the protocol and authentication method to the git repository
@@ -74,3 +79,26 @@ type GitConnectionBasicAuth struct {
 	// UnsecurePassword provide an easy way to configure BasicAuth. For exploration purposes only!
 	UnsecurePassword string `json:"unsecurePassword,omitempty"`
 }
+
+// ServiceConnection defines what remote services is used by the provider and authentification.
+type ServiceConnection struct {
+	// Forgejo defines a Forgejo remote server
+	// +optional
+	Forgejo ProviderForgejo `json:"forgejo,omitempty"`
+
+	// Gitlab defines a Gitlab remote server
+	// +optional
+	Gitlab ProviderGitlab `json:"gitlab,omitempty"`
+
+	// Github defines a Github remote server
+	// +optional
+	Github ProviderGithub `json:"github,omitempty"`
+
+	// TODO: add new supported providers here
+}
+
+type ProviderForgejo struct{}
+
+type ProviderGitlab struct{}
+
+type ProviderGithub struct{}
