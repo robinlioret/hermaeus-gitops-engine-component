@@ -23,7 +23,11 @@ trap teardown EXIT
 section "VARIABLES"
 env | grep -E "^E2E_" | sort
 
-section "INFRASTRUCTURE"
+section "PLAN"
+echo "[0.0.0] Infrastructure —> Planned"
+#echo "[0.1.0] Something —> Skipped (For some reason)"
+
+section "[0.0.0] INFRASTRUCTURE"
 info "create kind cluster"
 $E2E_CMD_KIND create cluster --config "$E2E_DIRNAME/kind-config.yaml" --name "$E2E_CLUSTER_NAME"
 info "wait for kind pods"
