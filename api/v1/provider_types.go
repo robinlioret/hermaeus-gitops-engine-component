@@ -90,7 +90,7 @@ type ServiceConnection struct {
 	// +optional
 	Gitlab ProviderGitlab `json:"gitlab,omitempty"`
 
-	// Github defines a Github remote server
+	// GitHub defines a GitHub remote server
 	// +optional
 	Github ProviderGithub `json:"github,omitempty"`
 
