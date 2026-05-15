@@ -48,11 +48,17 @@ type GitConnectionSSH struct {
 	// KeyPrivateKey is the key in the secret mapped to the private key value
 	KeyPrivateKey string `json:"keyPrivateKey,omitempty"`
 
+	// KeyKnownHosts is the key in the secret mapped to the list of known hosts for the provider
+	KeyKnownHosts string `json:"keyKnownHosts,omitempty"`
+
 	// UnsecureUsername provide an easy way to configure SSH. For exploration purposes only!
 	UnsecureUsername string `json:"unsecureUsername,omitempty"`
 
 	// UnsecurePrivateKey provide an easy way to configure SSH. For exploration purposes only!
 	UnsecurePrivateKey string `json:"unsecurePrivateKey,omitempty"`
+
+	// UnsecureKeyKnownHosts provide an easy way to configure SSH. For exploration purposes only!
+	UnsecureKeyKnownHosts string `json:"unsecureKeyKnownHosts,omitempty"`
 }
 
 type GitConnectionHTTPS struct {

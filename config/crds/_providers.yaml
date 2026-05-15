@@ -85,6 +85,10 @@ spec:
                   ssh:
                     description: SSH enables and configures the credentials
                     properties:
+                      keyKnownHosts:
+                        description: KeyKnownHosts is the key in the secret mapped
+                          to the list of known hosts for the provider
+                        type: string
                       keyPrivateKey:
                         description: KeyPrivateKey is the key in the secret mapped
                           to the private key value
@@ -98,6 +102,10 @@ spec:
                           the credentials. Must be in the same namespace as the GEC
                           instances. Can be omitted in favor of unsecure username
                           and key during exploration phase.
+                        type: string
+                      unsecureKeyKnownHosts:
+                        description: UnsecureKeyKnownHosts provide an easy way to
+                          configure SSH. For exploration purposes only!
                         type: string
                       unsecurePrivateKey:
                         description: UnsecurePrivateKey provide an easy way to configure
@@ -121,7 +129,7 @@ spec:
                     description: Forgejo defines a Forgejo remote server
                     type: object
                   github:
-                    description: Github defines a Github remote server
+                    description: GitHub defines a GitHub remote server
                     type: object
                   gitlab:
                     description: Gitlab defines a Gitlab remote server
