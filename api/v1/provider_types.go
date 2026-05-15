@@ -20,11 +20,15 @@ type ProviderSpec struct {
 	// GitopsClass name managing the Provider
 	GitopsClass string `json:"gitopsClass,omitempty"`
 
-	// GitConnection defines the protocol and authentication method to the git repository. If omitted, the provider must be public
+	// GitConnection enables and defines the protocol and authentication method to the git repository. If omitted, the provider must be public
 	// +optional
 	Git GitConnection `json:"git,omitempty"`
 
-	// Service defines what provider is used (Gitlab, GitHub, Forgejo, etc). If omitted, only bare git feature will be supported by the provider.
+	// OCIConnection enables and defines the OCI capabilities of the provider. Not implemented yet
+	// +optional
+	OCI OCIConnection `json:"oci,omitempty"`
+
+	// Service enables and defines what provider is used (Gitlab, GitHub, Forgejo, etc). If omitted, only bare git feature will be supported by the provider.
 	// +optional
 	Service ServiceConnection `json:"service,omitempty"`
 }
@@ -84,6 +88,11 @@ type GitConnectionBasicAuth struct {
 
 	// UnsecurePassword provide an easy way to configure BasicAuth. For exploration purposes only!
 	UnsecurePassword string `json:"unsecurePassword,omitempty"`
+}
+
+// OCIConnection defines the authentication method to use to connect to the OCI registry.
+type OCIConnection struct {
+	// TODO: support OCI providers
 }
 
 // ServiceConnection defines what remote services is used by the provider and authentification.

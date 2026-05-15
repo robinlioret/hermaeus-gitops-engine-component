@@ -45,7 +45,7 @@ spec:
                 example: github.com/hermaeus-project
                 type: string
               git:
-                description: GitConnection defines the protocol and authentication
+                description: GitConnection enables and defines the protocol and authentication
                   method to the git repository. If omitted, the provider must be public
                 properties:
                   https:
@@ -120,10 +120,14 @@ spec:
               gitopsClass:
                 description: GitopsClass name managing the Provider
                 type: string
+              oci:
+                description: OCIConnection enables and defines the OCI capabilities
+                  of the provider. Not implemented yet
+                type: object
               service:
-                description: Service defines what provider is used (Gitlab, GitHub,
-                  Forgejo, etc). If omitted, only bare git feature will be supported
-                  by the provider.
+                description: Service enables and defines what provider is used (Gitlab,
+                  GitHub, Forgejo, etc). If omitted, only bare git feature will be
+                  supported by the provider.
                 properties:
                   forgejo:
                     description: Forgejo defines a Forgejo remote server
